@@ -1,7 +1,7 @@
 ﻿/*
- * This class takes a string and splits it into an array of strings divided by spaces.
- * Each word in the original string can be accessed using the public GetNextWork method.
- * An empty string is returned after all words have been accessed.
+ * This class takes a string and splits it into an array of strings divided by special characters.
+ * Each word or consecutive delimiters in the original string can be accessed using the GetNextWord method.
+ * An empty string is returned after all words have been accessed, indicating the end of the sentence.
  */
 
 using System;
