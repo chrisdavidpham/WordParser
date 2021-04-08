@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordParser", "WordParser\WordParser.csproj", "{F1EE64C2-2F5B-438F-AD95-37D424DD21AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7917EBF9-0D4B-42C5-B339-3B15CE65FA85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordParser_Tests", "WordParser_Tests\WordParser_Tests.csproj", "{E5D36A09-5900-46A0-8A00-5403459E5018}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1EE64C2-2F5B-438F-AD95-37D424DD21AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1EE64C2-2F5B-438F-AD95-37D424DD21AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1EE64C2-2F5B-438F-AD95-37D424DD21AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1EE64C2-2F5B-438F-AD95-37D424DD21AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5D36A09-5900-46A0-8A00-5403459E5018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D36A09-5900-46A0-8A00-5403459E5018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D36A09-5900-46A0-8A00-5403459E5018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D36A09-5900-46A0-8A00-5403459E5018}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C434D03C-550D-4FB9-8252-E56A565A28EF}
+	EndGlobalSection
+EndGlobal
