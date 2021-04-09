@@ -21,7 +21,7 @@ namespace WordParser
     {
         public static string ParseWord(string word)
         {
-            if (Regex.IsMatch(word, "[^A-Za-z0-9]") || string.IsNullOrEmpty(word))
+            if (Regex.IsMatch(word, "[^0-9a-zA-Z]+") || string.IsNullOrEmpty(word))
             {
                 return word;
             }

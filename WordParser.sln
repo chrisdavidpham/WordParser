@@ -6,8 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordParser", "WordParser\WordParser.csproj", "{F1EE64C2-2F5B-438F-AD95-37D424DD21AB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7917EBF9-0D4B-42C5-B339-3B15CE65FA85}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordParser_Tests", "WordParser_Tests\WordParser_Tests.csproj", "{E5D36A09-5900-46A0-8A00-5403459E5018}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordParser_Tests", "WordParser_Tests\WordParser_Tests.csproj", "{E5D36A09-5900-46A0-8A00-5403459E5018}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

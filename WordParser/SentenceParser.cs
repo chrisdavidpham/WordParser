@@ -17,7 +17,16 @@ namespace WordParser
         public SentenceParser(string sentence)
         {
             CurrentIndex = 0;
+            // This regex will split by any special character but not apostrophes that are surrounded by non-special characters, and keep the delimiters
+            sentence = Regex.Replace(sentence, "(?<=[0-9a-zA-Z])+'(?=[0-9a-zA-Z])", string.Empty);
             Words = Regex.Split(sentence, "([^0-9a-zA-Z]+)");
+
+            // If the first character of the sentence is a special character, the split introduces an empty string as the first split element.
+            // Remove the first element if it is empty.
+            if (Words.Length > 0 && string.Equals(Words[0], string.Empty))
+            {
+                Words = Words[1..Words.Length];
+            }
         }
 
         private string GetWord(int index)
