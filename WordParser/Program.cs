@@ -37,7 +37,7 @@ namespace WordParser
 
                 while (!string.IsNullOrEmpty(currentWord))
                 {
-                    string currentWordParsed = WordParser.ParseWord(currentWord);
+                    var currentWordParsed = new ParsedWord(currentWord);
                     stringBuilder.Append(currentWordParsed);
                     currentWord = sentenceParser.GetNextWord();
                 }
