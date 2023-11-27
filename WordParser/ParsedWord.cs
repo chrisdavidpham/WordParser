@@ -15,16 +15,27 @@ namespace WordParser
         private char? LastLetter;
         private int DistinctBetweenLetterCount;
 
+        /// <summary>
+        /// Converts a string word into a parsed word.
+        /// </summary>
+        /// <param name="word">Word to be parsed</param>
         public ParsedWord(string word)
         {
             ParseWord(word);
         }
 
+        /// <summary>
+        /// Gets the value of a parsed word as a string.
+        /// </summary>
+        /// <returns>String value of the parsed word</returns>
         override public string ToString()
         {
             return IsAlphaNumeric ? $"{FirstLetter}{DistinctBetweenLetterCount}{LastLetter}" : Word;
         }
 
+        /// <summary>
+        /// Parses an alphanumeric word.
+        /// </summary>
         public void ParseWord(string word)
         {
             Word = word;
