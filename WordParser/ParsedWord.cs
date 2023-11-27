@@ -10,7 +10,7 @@ namespace WordParser
     public class ParsedWord
     {
         private string Word;
-        private bool IsAlphaNumeric;
+        private bool IsParsable;
         private char? FirstLetter;
         private char? LastLetter;
         private int DistinctBetweenLetterCount;
@@ -30,24 +30,24 @@ namespace WordParser
         /// <returns>String value of the parsed word</returns>
         override public string ToString()
         {
-            return IsAlphaNumeric ? $"{FirstLetter}{DistinctBetweenLetterCount}{LastLetter}" : Word;
+            return IsParsable ? $"{FirstLetter}{DistinctBetweenLetterCount}{LastLetter}" : Word;
         }
 
         /// <summary>
-        /// Parses an alphanumeric word.
+        /// Parses a word if it contains at least two alphanumeric characters and no special characters.
         /// </summary>
         public void ParseWord(string word)
         {
-            Word = word;
-            IsAlphaNumeric = Regex.IsMatch(Word, "[0-9a-zA-Z]+");
-            bool isSpecial = Regex.IsMatch(Word, "[^0-9a-zA-Z]+");
+            Word = word ?? string.Empty;
+            IsParsable = Regex.IsMatch(Word, "[0-9a-zA-Z]{2,}");
+            bool containsSpecialCharacters = Regex.IsMatch(Word, "[^0-9a-zA-Z]+");
 
-            if (IsAlphaNumeric && isSpecial)
+            if (IsParsable && containsSpecialCharacters)
             {
                 throw new NotImplementedException($"Cannot parse word \"{word}\". Words must not contain both alphanumeric and special characters.");
             }
 
-            if (IsAlphaNumeric)
+            if (IsParsable)
             {
                 FirstLetter = word[0];
                 LastLetter = word[word.Length - 1];

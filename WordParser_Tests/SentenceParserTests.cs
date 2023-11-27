@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using WordParser;
 
-namespace WordParserTests
+namespace ParsedWordTests
 {
     [TestClass]
     public class SentenceParserTests
@@ -64,7 +64,7 @@ namespace WordParserTests
         [TestMethod]
         public void ParseSentence_GivenComplexSentence_ShouldParseWordsAndMaintainSpecialCharacters()
         {
-            var sentence = "... Smooth's good, smooth {code} from 01'!";
+            const string sentence = "... A Smooth's good, smooth {code} from 01'!";
             _sentenceParser.ParseSentence(sentence);
             
             Assert.AreEqual(sentence, string.Join(string.Empty, _sentenceParser.Words));
