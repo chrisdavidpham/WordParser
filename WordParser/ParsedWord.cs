@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -40,6 +40,12 @@ namespace WordParser
         {
             Word = word;
             IsAlphaNumeric = Regex.IsMatch(Word, "[0-9a-zA-Z]+");
+            bool isSpecial = Regex.IsMatch(Word, "[^0-9a-zA-Z]+");
+
+            if (IsAlphaNumeric && isSpecial)
+            {
+                throw new NotImplementedException($"Cannot parse word \"{word}\". Words must not contain both alphanumeric and special characters.");
+            }
 
             if (IsAlphaNumeric)
             {
