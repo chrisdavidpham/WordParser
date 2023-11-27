@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WordParser
@@ -16,16 +17,30 @@ namespace WordParser
         /// Creates a SentenceParser and parses a sentence.
         /// </summary>
         /// <param name="sentence">Sentence to parse.</param>
-        public SentenceParser(string sentence)
+        public SentenceParser() { }
+
+        public string ParseSentenceIntoParsedWords(string sentence)
         {
-            ParseSentence(sentence);
+            ParseSentenceIntoWords(sentence);
+
+            var currentWord = GetNextWord();
+            var stringBuilder = new StringBuilder();
+
+            while (!string.IsNullOrEmpty(currentWord))
+            {
+                var currentWordParsed = new ParsedWord(currentWord);
+                stringBuilder.Append(currentWordParsed);
+                currentWord = GetNextWord();
+            }
+
+            return stringBuilder.ToString();
         }
 
         /// <summary>
         /// Parses a string, splitting words by special characters.
         /// </summary>
         /// <param name="sentence"></param>
-        public void ParseSentence(string sentence)
+        private void ParseSentenceIntoWords(string sentence)
         {
             CurrentIndex = 0;
             var wordList = Regex.Split(sentence, "([^0-9a-zA-Z]+|[0-9a-zA-Z]+)").ToList();
@@ -37,7 +52,7 @@ namespace WordParser
         /// Get next word in the parsed sentence.
         /// </summary>
         /// <returns></returns>
-        public string GetNextWord()
+        private string GetNextWord()
         {
             return Words.ElementAtOrDefault(CurrentIndex++);
         }

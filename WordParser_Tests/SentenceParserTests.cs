@@ -19,7 +19,7 @@ namespace ParsedWordTests
         [TestMethod]
         public void GetNextWord_GivenEmptySentence_ShouldReturnNull()
         {
-            _sentenceParser.ParseSentence(string.Empty);
+            _sentenceParser.ParseSentenceIntoWords(string.Empty);
             
             Assert.AreEqual(null, _sentenceParser.GetNextWord());
         }
@@ -28,7 +28,7 @@ namespace ParsedWordTests
         public void ParseSentence_GivenOneWord_ShouldParseOneWord()
         {
             const string word = "Smooth";
-            _sentenceParser.ParseSentence(word);
+            _sentenceParser.ParseSentenceIntoWords(word);
 
             var nextWord = _sentenceParser.GetNextWord();
 
@@ -52,7 +52,7 @@ namespace ParsedWordTests
         public void ParseSentence_GivenSpecialCharacters_ShouldMaintainSpecialCharacters()
         {
             const string sentence = "  Smooth...";
-            _sentenceParser.ParseSentence(sentence);
+            _sentenceParser.ParseSentenceIntoWords(sentence);
 
             var firstWord = _sentenceParser.GetNextWord();
             var secondWord = _sentenceParser.GetNextWord();
@@ -65,7 +65,7 @@ namespace ParsedWordTests
         public void ParseSentence_GivenComplexSentence_ShouldParseWordsAndMaintainSpecialCharacters()
         {
             const string sentence = "... A Smooth's good, smooth {code} from 01'!";
-            _sentenceParser.ParseSentence(sentence);
+            _sentenceParser.ParseSentenceIntoWords(sentence);
             
             Assert.AreEqual(sentence, string.Join(string.Empty, _sentenceParser.Words));
         }
