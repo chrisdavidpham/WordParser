@@ -10,51 +10,49 @@ namespace WordParser
     /// </summary>
     public class SentenceParser
     {
-        public List<string> Words { get; private set; }
-        private int CurrentIndex;
-
         /// <summary>
         /// Creates a SentenceParser and parses a sentence.
         /// </summary>
         /// <param name="sentence">Sentence to parse.</param>
         public SentenceParser() { }
 
-        public string ParseSentenceIntoParsedWords(string sentence)
+        /// <summary>
+        /// Parses a sentence's words into DistinctCountBetween words
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns></returns>
+        public string ParseWords(string sentence)
         {
-            ParseSentenceIntoWords(sentence);
+            return ParseWords(ParseSentence(sentence));
+        }
 
-            var currentWord = GetNextWord();
+        /// <summary>
+        /// Parses words ine DistinctCountBetween words
+        /// </summary>
+        /// <param name="words"></param>
+        /// <returns></returns>
+        public string ParseWords(List<string> words)
+        {
             var stringBuilder = new StringBuilder();
 
-            while (!string.IsNullOrEmpty(currentWord))
+            words.ForEach(word =>
             {
-                var currentWordParsed = new ParsedWord(currentWord);
-                stringBuilder.Append(currentWordParsed);
-                currentWord = GetNextWord();
-            }
+                stringBuilder.Append(new DistinctCountBetweenWord(word));
+            });
 
             return stringBuilder.ToString();
         }
 
         /// <summary>
-        /// Parses a string, splitting words by special characters.
+        /// Splits a sentence by words. A word is a string of consecutive alphanumeric characters,
+        /// or a string of consecutive special characters.
         /// </summary>
         /// <param name="sentence"></param>
-        private void ParseSentenceIntoWords(string sentence)
+        public List<string> ParseSentence(string sentence)
         {
-            CurrentIndex = 0;
             var wordList = Regex.Split(sentence, "([^0-9a-zA-Z]+|[0-9a-zA-Z]+)").ToList();
             wordList.RemoveAll(word => word == string.Empty);
-            Words = wordList;
-        }
-
-        /// <summary>
-        /// Get next word in the parsed sentence.
-        /// </summary>
-        /// <returns></returns>
-        private string GetNextWord()
-        {
-            return Words.ElementAtOrDefault(CurrentIndex++);
+            return wordList;
         }
     }
 }

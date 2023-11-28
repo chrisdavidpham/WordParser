@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 using WordParser;
 
 namespace ParsedWordTests
@@ -13,61 +13,66 @@ namespace ParsedWordTests
         [TestInitialize]
         public void Setup()
         {
-            _sentenceParser = new SentenceParser(string.Empty);
+            _sentenceParser = new SentenceParser();
         }
 
         [TestMethod]
-        public void GetNextWord_GivenEmptySentence_ShouldReturnNull()
+        public void ParseWords_GivenEmptySentence_ShouldEmptyList()
         {
-            _sentenceParser.ParseSentenceIntoWords(string.Empty);
+            var actual = _sentenceParser.ParseSentence(string.Empty);
             
-            Assert.AreEqual(null, _sentenceParser.GetNextWord());
+            Assert.AreEqual(0, actual.Count);
         }
 
         [TestMethod]
         public void ParseSentence_GivenOneWord_ShouldParseOneWord()
         {
-            const string word = "Smooth";
-            _sentenceParser.ParseSentenceIntoWords(word);
+            var actual = _sentenceParser.ParseSentence("Smooth");
+            var expected = new List<string>()
+            {
+                "Smooth"
+            };
 
-            var nextWord = _sentenceParser.GetNextWord();
-
-            Assert.AreEqual(word, nextWord);
+            Assert.IsTrue(Enumerable.SequenceEqual(expected, actual));
         }
 
         [TestMethod]
         public void ParseSentence_GivenMultipleWords_ShouldParseEachWord()
         {
-            const string sentence = "Clean code";
-            _sentenceParser = new SentenceParser(sentence);
+            var actual = _sentenceParser.ParseSentence("Clean code");
+            var expected = new List<string>()
+            {
+                "Clean", " ", "code"
+            };
 
-            var firstWord = _sentenceParser.GetNextWord();
-            var secondWord = _sentenceParser.GetNextWord();
-            var thirdWord = _sentenceParser.GetNextWord();
-
-            Assert.AreEqual(sentence, $"{firstWord}{secondWord}{thirdWord}");
+            Assert.IsTrue(Enumerable.SequenceEqual(expected, actual));
         }
 
         [TestMethod]
         public void ParseSentence_GivenSpecialCharacters_ShouldMaintainSpecialCharacters()
         {
-            const string sentence = "  Smooth...";
-            _sentenceParser.ParseSentenceIntoWords(sentence);
+            var actual = _sentenceParser.ParseSentence("  Smooth...");
+            var expected = new List<string>()
+            {
+                "  ", "Smooth", "..."
+            };
 
-            var firstWord = _sentenceParser.GetNextWord();
-            var secondWord = _sentenceParser.GetNextWord();
-            var thirdWord = _sentenceParser.GetNextWord();
-
-            Assert.AreEqual(sentence, $"{firstWord}{secondWord}{thirdWord}");
+            Assert.IsTrue(Enumerable.SequenceEqual(expected, actual));
         }
 
         [TestMethod]
         public void ParseSentence_GivenComplexSentence_ShouldParseWordsAndMaintainSpecialCharacters()
         {
-            const string sentence = "... A Smooth's good, smooth {code} from 01'!";
-            _sentenceParser.ParseSentenceIntoWords(sentence);
-            
-            Assert.AreEqual(sentence, string.Join(string.Empty, _sentenceParser.Words));
+            const string sentence = "... Smooth's good {code}, from 01'!";
+            var actual = _sentenceParser.ParseSentence(sentence);
+            var expected = new List<string>()
+            {
+                "... ", "Smooth", "'", "s", " ", "good", " {", "code", "}, ", "from", " ", "01", "'!",
+            };
+
+            Assert.IsTrue(Enumerable.SequenceEqual(expected, actual));
         }
+
+        // TODO: Tests for ParseWords
     }
 }

@@ -19,7 +19,7 @@ namespace WordParser
                     Console.WriteLine("Enter a sentence to be parsed: ");
                     var input = Console.ReadLine();
 
-                    Console.WriteLine(sentenceParser.ParseSentenceIntoParsedWords(input));
+                    Console.WriteLine(sentenceParser.ParseWords(input));
 
                     while (menuOption)
                     {
@@ -36,7 +36,7 @@ namespace WordParser
             {
                 for (int i = 0; i < args.Length; i++)
                 {
-                    Console.WriteLine(sentenceParser.ParseSentenceIntoParsedWords(args[i]));
+                    Console.WriteLine(sentenceParser.ParseWords(args[i]));
                 }
             }
         }

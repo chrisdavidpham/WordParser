@@ -7,7 +7,7 @@ namespace WordParser
     /// <summary>
     /// Parses words by replacing alhpanumeric characters between the beginning and last character with the count of distinct characters replaced.
     /// </summary>
-    public class ParsedWord
+    public class DistinctCountBetweenWord
     {
         private string Word;
         private bool IsParsable;
@@ -19,9 +19,9 @@ namespace WordParser
         /// Converts a string word into a parsed word.
         /// </summary>
         /// <param name="word">Word to be parsed</param>
-        public ParsedWord(string word)
+        public DistinctCountBetweenWord(string word)
         {
-            ParseWord(word);
+            Parse(word);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace WordParser
         /// <summary>
         /// Parses a word if it contains at least two alphanumeric characters and no special characters.
         /// </summary>
-        public void ParseWord(string word)
+        public void Parse(string word)
         {
             Word = word ?? string.Empty;
             IsParsable = Regex.IsMatch(Word, "[0-9a-zA-Z]{2,}");
@@ -44,7 +44,7 @@ namespace WordParser
 
             if (IsParsable && containsSpecialCharacters)
             {
-                throw new NotImplementedException($"Cannot parse word \"{word}\". Words must not contain both alphanumeric and special characters.");
+                throw new NotImplementedException($"Invalid word \"{word}\". Alphanumeric words must not contain special characters.");
             }
 
             if (IsParsable)
