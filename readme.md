@@ -18,16 +18,18 @@ Words are separated by spaces or non-alphabetic characters and these separators 
 
 ##### Example input
 Input 1:    It was many and many a year ago
+
 Output 1:   I0t w1s m2y a1d m2y a y2r a1o
+
 Input 2:    Copyright,Microsoft:Corporation
+
 Output 2:   C7t,M6t:C6n
 
 ##### User interface requirements
-Input: Command Line Interface: One should be able to pass the argument (input) on command line
+Input:Â Command Line Interface: One should be able to pass the argument (input) on command line
 Output: Should print the output on command line
- 
+Â 
 ##### Rules
- 
 * Code variables must be in English.
 * Use the main function arguments.
 * The function should not be static nor main.
