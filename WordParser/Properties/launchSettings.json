@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WordParser": {
+      "commandName": "Project",
+      "commandLineArgs": "-i"
+    }
+  }
+}
