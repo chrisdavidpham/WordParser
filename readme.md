@@ -1,23 +1,42 @@
 # WordParser
- Problem Description
+
+### Problem Description
  
- Write a program that parses a sentence and replaces each word with the following:
- first letter, number of distinct characters between first and last character, and last letter. For example, Smooth would become S3h.
- Words are separated by spaces or non-alphabetic characters and these separators should be maintained in their original form and location in the answer.
+Write a program that parses a sentence and replaces each word with the following: first letter, number of distinct characters between first and last character, and last letter.
+Words are separated by spaces or non-alphabetic characters and these separators should be maintained in their original form and location in the answer.
 
-## Instructions to Run
-### Method 1
-Run the .exe and follow the text prompts in the console window.
+### Example input
+Input 1:    It was many and many a year ago
+Output 1:   I0t w1s m2y a1d m2y a y2r a1o
+Input 2:    Copyright,Microsoft:Corporation
+Output 2:   C7t,M6t:C6n
 
-### Method 2
-Compile the project in Visual Studio 2019, set the input argument in project properties, and run the program.
+### User interface requirements
+Input: Command Line Interface: One should be able to pass the argument (input) on command line
+Output: Should print the output on command line
+ 
+### Rules
+ 
+* Code variables must be in English.
+* Use the main function arguments.
+* The function should not be static nor main.
+* The function should not use hardcoded values.
+* The function must be reusable.
+* Include test cases.
+* Document your code.
 
-## Special cases
-### Apostrophes
-This program deliberately removes single quote marks from abbreviated words such as "isn't" and "I've".
-Since the apostrophe is not a letter or number, it is not counted when calculating the number of distinct characters in a word.
-This program will not consider apostrophes to be the first or last character of a word. For example, "Class of '01" or "ol' reliable."
-Another example would be a single quoted phrase within a sentence. For example, "This 'is quoted' inside."
+# How to run
+
+### Command line arguments
+Run the program using command line arguments as the input to parse.
+
+### Interactive menu
+Run the program with the command line argument `-i` to start interactive mode. Follow the prompts in the console.
+
+# Unruled parsing scenarios
 
 ### Numbers
-By design, this program will treat numbers like words when parsing them. For example, "2021" becomes "221", and "12:34:567" becomes "102:304:517"
+The word parser treates numeric characters identically to alphabetical characters. For example, "2021" becomes "221", and "r0b07" becomes "r27"
+
+### Case sensitivity
+The word parser is case sensitive, so `a` and `A` are considered distinct characters. For example, "gOoD" is parsed as "g2D"

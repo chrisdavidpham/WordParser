@@ -63,11 +63,11 @@ namespace ParsedWordTests
         [TestMethod]
         public void ParseSentence_GivenComplexSentence_ShouldParseWordsAndMaintainSpecialCharacters()
         {
-            const string sentence = "... Smooth's good {code}, from 01'!";
+            const string sentence = "... Smooth's good {r0b07}, from 01'!";
             var actual = _sentenceParser.ParseSentence(sentence);
             var expected = new List<string>()
             {
-                "... ", "Smooth", "'", "s", " ", "good", " {", "code", "}, ", "from", " ", "01", "'!",
+                "... ", "Smooth", "'", "s", " ", "good", " {", "r0b07", "}, ", "from", " ", "01", "'!",
             };
 
             Assert.IsTrue(Enumerable.SequenceEqual(expected, actual));
@@ -78,9 +78,9 @@ namespace ParsedWordTests
         {
             var words = new List<string>()
             {
-                "... ", "Smooth", "'", "s", " ", "good", " {", "code", "}, ", "from", " ", "01", "'!",
+                "... ", "Smooth", "'", "s", " ", "good", " {", "r0b07", "}, ", "from", " ", "01", "'!",
             };
-            var expected = "... S3h's g1d {c2e}, f2m 001'!";
+            var expected = "... S3h's g1d {r27}, f2m 001'!";
 
             var actual = _sentenceParser.ParseWords(words);
 
