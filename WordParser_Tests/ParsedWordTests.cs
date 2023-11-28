@@ -84,7 +84,7 @@ namespace ParsedWordTests
         }
 
         [TestMethod]
-        public void ParsedWordToString_GivenSpecialCharacter_ShouldNotChangeWord()
+        public void ParsedWordToString_GivenSpaceCharacter_ShouldNotChangeWord()
         {
             const string word = " ";
             string parsed = new DistinctCountBetweenWord(word).ToString();

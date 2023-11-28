@@ -9,23 +9,14 @@ namespace WordParser
         public void OpenInteractiveMenu()
         {
             SentenceParser sentenceParser = new SentenceParser();
-            bool repeatInput = true;
-
-            while (repeatInput)
+            string input = string.Empty;
+            
+            while (input != "q")
             {
-                var menuOption = true;
-                Console.WriteLine("Enter a sentence to be parsed: ");
-                var input = Console.ReadLine();
+                Console.WriteLine("\nEnter a sentence to be parsed, or \"q\" to quit: ");
+                input = Console.ReadLine();
 
                 Console.WriteLine(sentenceParser.ParseWords(input));
-
-                while (menuOption)
-                {
-                    Console.WriteLine("\nSelect an option: \"q\" - quit; \"c\" - continue parsing more sentences");
-                    input = Console.ReadLine().TrimEnd();
-                    repeatInput = input == "c";
-                    menuOption = input != "c" && input != "q";
-                }
             }
 
             Console.WriteLine("Goodbye.");
