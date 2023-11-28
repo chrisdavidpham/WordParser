@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace WordParser
 {
     /// <summary>
-    /// Parses words by replacing alhpanumeric characters between the beginning and last character with the count of distinct characters replaced.
+    /// Parses words by replacing characters between the beginning and last character with the count of distinct characters replaced.
     /// </summary>
     public class DistinctCountBetweenWord
     {
@@ -55,6 +55,11 @@ namespace WordParser
             }
         }
 
+        /// <summary>
+        /// Counts the distinct number of characters between the first and last character of a word.
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns>Distinct character count</returns>
         public int GetDistinctCountBetween(string word)
         {
             return word.Length == 1 ? 0 : word.Substring(1, word.Length - 2).Distinct().Count();

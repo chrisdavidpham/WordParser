@@ -6,6 +6,9 @@ namespace WordParser
     {
         public Menu() { }
 
+        /// <summary>
+        /// Starts an interactive menu in the console.
+        /// </summary>
         public void OpenInteractiveMenu()
         {
             SentenceParser sentenceParser = new SentenceParser();
