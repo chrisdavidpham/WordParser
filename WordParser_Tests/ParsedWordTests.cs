@@ -21,7 +21,7 @@ namespace ParsedWordTests
         }
 
         [TestMethod]
-        public void ParsedWordToString_GivenOneLetterWord_ShouldNotModifyWord()
+        public void ParsedWordToString_GivenOneLetterWord_ShouldNotChangeWord()
         {
             string parsed = new DistinctCountBetweenWord("a").ToString();
             Assert.AreEqual("a", parsed);
@@ -81,6 +81,22 @@ namespace ParsedWordTests
         {
             string parsed = new DistinctCountBetweenWord("aabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789z").ToString();
             Assert.AreEqual("a62z", parsed);
+        }
+
+        [TestMethod]
+        public void ParsedWordToString_GivenSpecialCharacter_ShouldNotChangeWord()
+        {
+            const string word = " ";
+            string parsed = new DistinctCountBetweenWord(word).ToString();
+            Assert.AreEqual(word, parsed);
+        }
+
+        [TestMethod]
+        public void ParsedWordToString_GivenConsecutiveSpecialCharacter_ShouldNotChangeWord()
+        {
+            const string word = "...";
+            string parsed = new DistinctCountBetweenWord(word).ToString();
+            Assert.AreEqual(word, parsed);
         }
     }
 }

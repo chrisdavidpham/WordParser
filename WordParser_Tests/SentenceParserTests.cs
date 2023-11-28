@@ -17,7 +17,7 @@ namespace ParsedWordTests
         }
 
         [TestMethod]
-        public void ParseWords_GivenEmptySentence_ShouldEmptyList()
+        public void ParseSentence_GivenEmptySentence_ShouldEmptyList()
         {
             var actual = _sentenceParser.ParseSentence(string.Empty);
             
@@ -73,6 +73,18 @@ namespace ParsedWordTests
             Assert.IsTrue(Enumerable.SequenceEqual(expected, actual));
         }
 
-        // TODO: Tests for ParseWords
+        [TestMethod]
+        public void ParseWords_GivenWords_ShouldParseAndConcatenateWords()
+        {
+            var words = new List<string>()
+            {
+                "... ", "Smooth", "'", "s", " ", "good", " {", "code", "}, ", "from", " ", "01", "'!",
+            };
+            var expected = "... S3h's g1d {c2e}, f2m 001'!";
+
+            var actual = _sentenceParser.ParseWords(words);
+
+            Assert.IsTrue(Enumerable.SequenceEqual(expected, actual));
+        }
     }
 }
