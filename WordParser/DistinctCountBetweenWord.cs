@@ -10,7 +10,7 @@ namespace WordParser
     public class DistinctCountBetweenWord
     {
         private string Word;
-        private bool IsParsable;
+        private bool IsParsable { get { return Regex.IsMatch(Word, "[0-9a-zA-Z]{2,}"); } }
         private char? FirstLetter;
         private char? LastLetter;
         private int DistinctBetweenLetterCount;
@@ -39,16 +39,15 @@ namespace WordParser
         public void Parse(string word)
         {
             Word = word ?? string.Empty;
-            IsParsable = Regex.IsMatch(Word, "[0-9a-zA-Z]{2,}");
-            bool containsSpecialCharacters = Regex.IsMatch(Word, "[^0-9a-zA-Z]+");
-
-            if (IsParsable && containsSpecialCharacters)
-            {
-                throw new NotImplementedException($"Invalid word \"{word}\". Alphanumeric words must not contain special characters.");
-            }
 
             if (IsParsable)
             {
+                bool containsSpecialCharacters = Regex.IsMatch(Word, "[^0-9a-zA-Z]+");
+                if (containsSpecialCharacters)
+                {
+                    throw new NotImplementedException($"Invalid word \"{word}\". Alphanumeric words must not contain special characters.");
+                }
+
                 FirstLetter = word[0];
                 LastLetter = word[word.Length - 1];
                 DistinctBetweenLetterCount = GetDistinctCountBetween(word);
@@ -60,7 +59,7 @@ namespace WordParser
         /// </summary>
         /// <param name="word"></param>
         /// <returns>Distinct character count</returns>
-        public int GetDistinctCountBetween(string word)
+        private int GetDistinctCountBetween(string word)
         {
             return word.Length == 1 ? 0 : word.Substring(1, word.Length - 2).Distinct().Count();
         }
